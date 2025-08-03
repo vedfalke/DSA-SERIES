@@ -1,0 +1,46 @@
+
+class Solution {
+    public TreeNode addOneRow(TreeNode root, int val, int depth) { 
+
+//given in que if (depth==1) then we have to create a newnode and attach the root to left of newnode
+
+           if(depth==1){
+            TreeNode newroot=new TreeNode(val); // creating a node in tree 
+            newroot.left=root;            
+            return newroot;
+        }
+// performing level order traversal
+
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        int currentlevel=1;                            // keeping track of current level to check with the depth and then add row
+        while(!q.isEmpty()){
+            int size=q.size();
+               if(currentlevel==depth-1){                      // reached the level where we have to add node
+               for(int i=0;i<size;i++){
+                TreeNode node=q.remove();
+                   TreeNode oldleft = node.left;       // keeping old nodes linked 
+                    TreeNode oldright = node.right;
+
+                    node.left=new TreeNode(val);        
+                     node.left.left=oldleft;
+                    node.right=new TreeNode(val);
+                    node.right.right=oldright;
+                    currentlevel++;
+                    
+                }
+                break;
+                } else {
+                      for (int i = 0; i < size; i++) {
+                    TreeNode node = q.poll();
+                    if (node.left != null) q.add(node.left);
+                    if (node.right != null) q.add(node.right);
+
+                } 
+             currentlevel++;
+
+            }
+        }
+        return root;
+    }
+}
