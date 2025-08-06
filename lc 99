@@ -1,0 +1,28 @@
+// Brute force approach to solve this que
+
+
+
+class Solution {
+    int index=0; 
+    public void recoverTree(TreeNode root) {
+        ArrayList<Integer> ans=new ArrayList<>();   // lsit to store the inorder traversal nodes
+        helper(root,ans);                             // inorder traversal
+        Collections.sort(ans);                        // sorting the list
+        helper2(root,ans);                             // after sorting we replaced the wromg nodes
+    }
+
+private void helper(TreeNode root,ArrayList<Integer> ans){             // helper function for inorder traversal before swapping 
+    if(root==null)return;
+    helper(root.left,ans);
+    ans.add(root.val);
+    helper(root.right,ans);
+}
+private void helper2(TreeNode root,ArrayList<Integer> ans){               // helper function for inorder traversal AFTER SWAPPING
+    if(root==null)return;
+    helper2(root.left,ans);
+    root.val=ans.get(index++);
+    helper2(root.right,ans);
+
+
+    }
+}
