@@ -1,0 +1,19 @@
+public class Solution {
+    public int nchoc(int A, ArrayList<Integer> B) {
+        int mod=1000000007;
+        PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        for(int j:B){
+            pq.add(j);
+        }
+        long sum=0;
+        for(int i=0;i<A;i++){
+            if(pq.isEmpty())break;
+            
+            int maxc=pq.poll();
+            sum=(sum+maxc)%mod;
+            pq.add(maxc/2);
+            
+        }
+        return (int)sum;
+    }
+}
