@@ -1,0 +1,18 @@
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        int count=0;
+     HashMap<Integer,Integer> ans=new HashMap<>();
+     for(int i=0;i<nums.length;i++){
+        int num=nums[i];
+     int complement=k-num;
+     if (ans.getOrDefault(complement, 0) > 0) {
+                count++;
+                ans.put(complement, ans.get(complement) - 1);
+            } else {
+    
+               ans.put(num, ans.getOrDefault(num, 0) + 1);
+            }
+        }
+     return count;
+    }
+}
