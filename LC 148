@@ -1,0 +1,25 @@
+
+//Brute force approach.(in this approach  we created a arraylist and then stored all the nodes values of the original list and the we sorted our arraylist and the we again created a new 
+linkedlist with the sorted arraylist.
+
+  class Solution {
+    public ListNode sortList(ListNode head) {
+        ArrayList<Integer> ans=new ArrayList<>();
+        ListNode curr=head;
+        while(curr!=null){
+            ans.add(curr.val);
+            curr=curr.next;
+        }
+        Collections.sort(ans);
+
+      ListNode newans=new ListNode(0);
+      ListNode newcurr=newans;
+      for(int val:ans){
+          newcurr.next = new ListNode(val);
+          newcurr=newcurr.next;
+
+      }
+
+ return newans.next;
+    }
+}
