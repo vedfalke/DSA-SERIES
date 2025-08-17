@@ -1,5 +1,4 @@
-
-
+// this is a better approach but takes more space beacuse we are creating new nodes after comparing//
 
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
@@ -29,3 +28,34 @@ class Solution {
       return Dummy.next;
     }
 }
+
+
+// Optimal solution(here we are not creating new nodes)
+
+
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+     ListNode Dummy=new ListNode(-1);
+    ListNode current=Dummy;
+    
+    while(list1!=null && list2!=null){
+        if(list1.val<list2.val){
+            current.next=list1;
+            list1=list1.next;
+        }else{
+            current.next=list2;
+            list2=list2.next;
+        }
+        current=current.next;
+    }
+ if(list1!=null) current.next=list1;
+ if(list2!=null) current.next=list2;
+ 
+      return Dummy.next;
+    }
+}
+
+
+
+
+
