@@ -1,0 +1,31 @@
+// BRUTE FORCE 
+
+
+
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+       ArrayList<Integer> ans=new ArrayList<>();
+       ListNode temp=head;
+       while(temp!=null){
+        ans.add(temp.val);
+        temp=temp.next;
+       }
+       int l=left-1;
+       int r=right-1;
+       while(l<r){
+        int swap=ans.get(l);
+        ans.set(l,ans.get(r));
+        ans.set(r,swap);
+        l++;
+        r--;
+       }
+     ListNode dummy=new ListNode(0);
+     temp=dummy;
+     for(int val:ans){
+        temp.next=new ListNode(val);
+        temp=temp.next;
+     }
+     return dummy.next;
+        
+    }
+}
