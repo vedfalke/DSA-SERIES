@@ -1,0 +1,21 @@
+class Solution {
+    public double myPow(double x, int n) {
+  long N=n;                                            // the input can be big so we use long //
+        if(N<0){                                         when n= negative, we are doing inverse of x to its powers
+            x=1/x;
+            N=-N;                                       here n is negative but we want our output in positive so we multiply it again with -N;
+        }
+        return helper(x,N);
+        
+    }
+    private double helper(double x,long n){
+        if(n==0) return 1.0;
+        double half=helper(x,n/2);                          // recursively calling helper function for smaller value of n/2 eventually to reach base case;
+        if(n%2==0){
+            return half*half;
+        }else{
+            return half*half*x;
+        }
+    }
+}
+
