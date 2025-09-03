@@ -1,0 +1,19 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        int i=n-2;
+        while(i>=0 && nums[i]>=nums[i+1])i--;                 // find the first smallest or decreasing element from right
+        if(i>=0){
+            int j=n-1;
+            while(nums[j]<=nums[i])j--;
+            int temp=nums[i];
+            nums[i]=nums[j];
+            nums[j]=temp;
+        }                                                                       
+        for (int l = i + 1, r = n - 1; l < r; l++, r--) {              // if there is no element found which is first small from right then reverse the array
+            int temp = nums[l];
+             nums[l] = nums[r]; 
+             nums[r] = temp;
+    }
+    }
+}
